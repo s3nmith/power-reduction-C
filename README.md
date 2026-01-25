@@ -1,6 +1,6 @@
 ## Overview
 
-This document describes the clock gating implementation for the OSCAR parallelizing compiler on Intel Xeon Gold 6326 CPUs, including why the original approach failed and the working solution.
+This document describes the clock gating implementation I did for the OSCAR parallelizing compiler (Owned by Kasahara Lab) on Intel Xeon Gold 6326 CPUs, including why my original approach failed and the working solution with nanosleep().
 
 ---
 
