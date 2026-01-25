@@ -21,7 +21,7 @@ while (sync_flag != expected) {
 
 ## Original Approach: MWAIT (Failed)
 
-### What We Tried
+### What I Tried
 
 Intel provides `MONITOR`/`MWAIT` instructions specifically designed for power-efficient waiting:
 
@@ -56,7 +56,7 @@ Illegal instruction (core dumped)
 └─────────────────────────────────────────────────────────┘
 ```
 
-**Key insight**: `sudo` gives you root *privileges* (admin rights), but you're still in Ring 3 (user space). MWAIT is a **privileged instruction** that can only execute in Ring 0 (kernel space).
+**An insight**: `sudo` gives you root *privileges* (admin rights), but you're still in Ring 3 (user space). MWAIT is a **privileged instruction** that can only execute in Ring 0 (kernel space).
 
 On older Linux kernels (pre-2.6), MWAIT sometimes worked from user space. Modern kernels block this for security reasons.
 
@@ -76,7 +76,7 @@ The governor controls how the kernel manages CPU frequency:
 
 ### The Problem We Hit
 
-Our original script used `userspace` governor for frequency scaling:
+Our original script used `userspace` governor for frequency changes:
 
 ```bash
 sudo cpupower frequency-set -g userspace
@@ -106,7 +106,7 @@ Which only works with `userspace` governor.
 
 ---
 
-## New Approach: nanosleep() (Working)
+## New Approach: nanosleep() (Working so far...)
 
 ### How It Works
 
